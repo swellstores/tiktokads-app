@@ -1,0 +1,33 @@
+{
+  "label": "Checkouts",
+  "description": "Match keys only the shopper's browser knows, kept per cart until the order is sent to TikTok. Records of carts that never become orders are deleted after 7 days.",
+  "fields": {
+    "cart_id": {
+      "type": "objectid",
+      "label": "Cart",
+      "required": true,
+      "unique": true
+    },
+    "ttclid": {
+      "type": "string",
+      "label": "TikTok click id"
+    },
+    "ttp": {
+      "type": "string",
+      "label": "TikTok Pixel cookie (_ttp)"
+    },
+    "ip": {
+      "type": "string",
+      "label": "Shopper IP address"
+    },
+    "user_agent": {
+      "type": "string",
+      "label": "Shopper user agent"
+    },
+    "origin": {
+      "type": "string",
+      "label": "Page origin",
+      "description": "Scheme and host of the page that handed the keys over. The Purchase names this site's checkout."
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<!-- TikTok Ads for Swell: hands the shopper's IP address and user agent to the app at checkout,
+     plus the TikTok click id and _ttp cookie when the checkout runs on the storefront's own
+     address. Paste into Settings → Checkout → Checkout scripts → Head scripts. -->
+<script>
+  (function () {
+    var checkoutId = "{{ cart.checkout_id }}";
+    var publicKey = "{{ cart.settings.public_key }}";
+    if (!/^[0-9a-f]{32}$/.test(checkoutId) || !publicKey) return;
+
+    // Checkout runs head scripts again on every cart change: hand the keys over once per page,
+    // counted from the first run that has the cart
+    if (window.__tiktokadsCapture) return;
+    window.__tiktokadsCapture = true;
+
+    function cookie(name) {
+      var match = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+      if (!match) return undefined;
+      try {
+        return decodeURIComponent(match[1]);
+      } catch (e) {
+        return match[1];
+      }
+    }
+
+    fetch("/functions/tiktokads/capture", {
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "application/json", Authorization: publicKey },
+      body: JSON.stringify({ checkout_id: checkoutId, ttclid: cookie("ttclid"), ttp: cookie("_ttp") })
+    }).catch(function () {});
+  })();
+</script>

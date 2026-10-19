@@ -1,0 +1,20 @@
+{
+  "description": "Send online purchases to TikTok Ads from the server",
+  "devDependencies": {
+    "@swell/app-types": "^1.2.0",
+    "typescript": "^5.9.3",
+    "@cloudflare/vitest-plugin": "1.4.x",
+    "vitest": "5.0.x",
+    "@swell/apps-sdk": "2.0.0-alpha.0"
+  },
+  "name": "tiktokads",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit && tsc --build --noEmit test",
+    "test": "vitest run"
+  },
+  "version": "1.0.0",
+  "dependencies": {
+    "libphonenumber-js": "^1.12.0"
+  }
+}

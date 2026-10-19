@@ -1,0 +1,18 @@
+{
+  "collection": "issues",
+  "label": "TikTok refuses purchases",
+  "description": "Tells the store's administrators that TikTok no longer accepts the store's purchases, so they can fix it before sales go uncounted.",
+  "method": "email",
+  "admin": true,
+  "event": "created",
+  "new": true,
+  "subject": "Action needed: TikTok is not receiving purchases from {{ store.name }}",
+  "sample": {
+    "key": "credentials",
+    "message": "TikTok answered 40105: Access token is incorrect or has been revoked.",
+    "source": "order.submitted",
+    "count": 1,
+    "date_last_seen": "2026-10-16T12:00:00.000Z",
+    "app_id": "000000000000000000000000"
+  }
+}
