@@ -1,44 +1,44 @@
 {
-  "id": "tiktokads",
-  "name": "TikTok Ads",
-  "type": "integration",
-  "version": "1.0.0",
-  "description": "Send online purchases to TikTok Ads from the server",
-  "support_email": "support@swell.is",
-  "documentation_url": "https://developers.swell.is/app-guides/tiktok-ads",
-  "repository_url": "https://github.com/swellstores/tiktokads-app",
-  "price": 0,
-  "price_external": true,
-  "images": [
-    {
-      "id": "every-purchase",
-      "image_src": "assets/images/1-every-purchase.png",
-      "title": "Every online order, sent to TikTok",
-      "description": "Each order placed through your storefront reaches TikTok as a Purchase, from the server, once."
-    },
-    {
-      "id": "match-keys",
-      "image_src": "assets/images/2-match-keys.png",
-      "title": "Matched to the ad that sold it",
-      "description": "Hashed customer details, plus the click id, Pixel cookie, IP and user agent your storefront hands over."
-    },
-    {
-      "id": "nothing-lost",
-      "image_src": "assets/images/3-nothing-lost.png",
-      "title": "Nothing lost quietly",
-      "description": "If TikTok refuses your token, your admins get an email, and the waiting purchases go out once it is fixed."
-    },
-    {
-      "id": "setup",
-      "image_src": "assets/images/4-setup.png",
-      "title": "Set up in minutes",
-      "description": "Paste your Pixel code and access token, test the connection, and switch it on."
-    }
-  ],
-  "permissions": [
-    "read_orders",
-    "read_carts",
-    "read_accounts",
-    "read_products"
-  ]
+	"id": "tiktokads",
+	"name": "TikTok Ads",
+	"type": "integration",
+	"version": "1.0.0",
+	"description": "Send online purchases to TikTok Ads from the server",
+	"support_email": "support@swell.is",
+	"documentation_url": "https://developers.swell.is/app-guides/tiktok-ads",
+	"repository_url": "https://github.com/swellstores/tiktokads-app",
+	"price": 0,
+	"price_external": true,
+	"images": [
+		{
+			"id": "every-purchase",
+			"image_src": "assets/images/1-every-purchase.png",
+			"title": "Every online order, sent to TikTok",
+			"description": "Each order placed through your storefront reaches TikTok as a Purchase, from the server, once."
+		},
+		{
+			"id": "match-keys",
+			"image_src": "assets/images/2-match-keys.png",
+			"title": "Matched to the ad that sold it",
+			"description": "Hashed customer details, plus the click id, Pixel cookie, IP and user agent your storefront hands over."
+		},
+		{
+			"id": "nothing-lost",
+			"image_src": "assets/images/3-nothing-lost.png",
+			"title": "Nothing lost quietly",
+			"description": "If TikTok refuses your token, your admins get an email, and the waiting purchases go out once it is fixed."
+		},
+		{
+			"id": "setup",
+			"image_src": "assets/images/4-setup.png",
+			"title": "Set up in minutes",
+			"description": "Paste your Pixel code and access token, test the connection, and switch it on."
+		}
+	],
+	"permissions": [
+		"read_orders",
+		"read_carts",
+		"read_accounts",
+		"read_products"
+	]
 }
