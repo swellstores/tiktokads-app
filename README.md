@@ -76,6 +76,8 @@ Swell retries a failing delivery with gaps that grow to a few hours, and to 12 h
 
 **Test connection** clears an open token or throttling problem once TikTok accepts the Pixel code and token, and a new problem sends a new email. Any problem seen again after a quiet day sends a new email.
 
+Implemented by `functions/track-order.ts` (the answers), `models/issues.json` (one record per open problem) and the notification `notifications/alert.*`, listed on the app's Overview tab in the dashboard.
+
 ## Storefront integration
 
 Without it, purchases match on the customer's hashed details only. With it, each purchase also carries TikTok's click id, the `_ttp` cookie, the IP address and the user agent, the keys TikTok matches best. The storefront's developer adds two touch points, about 15 lines. Nothing goes to TikTok from the browser: the touch points only hand the keys to the app, which keeps them with the shopper's cart until the order is placed.
@@ -128,6 +130,16 @@ A store whose Pixel also fires Purchase must use the order id as its event id, s
 </script>
 ```
 
+## Day-to-day use
+
+Once it is switched on, the app needs nothing per order: each storefront order goes to TikTok when it is placed.
+
+- **Results** are in TikTok Ads Manager: the Pixel's overview in Events Manager counts the server Purchases, and campaign reports show the purchases TikTok credited to your ads.
+- **An email "Action needed: TikTok is not receiving purchases"** means TikTok refused purchases; the email says why and what to do. For a refused token or Pixel code: generate a new token in TikTok, paste it into the app's settings, save and press **Test connection**. Purchases that were waiting go out at their next retry.
+- **A new access token** (after you generate one in TikTok, the old one stops working) goes into the settings the same way: paste, save, **Test connection**.
+- **Pausing**: turn off **Send purchases to TikTok**. Orders placed while it is off are never sent.
+- **Checking a change** to the storefront or checkout: set a test event code, place an order, look in the Test events tab, then clear the code (see [Check it with TikTok's Test Events](#check-it-with-tiktoks-test-events)).
+
 ## Privacy
 
 - **What leaves Swell hashed, and what in clear.** Email, phone, customer id, first and last name and zip code are sent as SHA-256 hashes. City, state, country and locale, and the IP address, user agent, click id and `_ttp` cookie, are sent in clear, as TikTok requires. The app collects the last four when the storefront or checkout hands over the keys, and deletes them once TikTok has accepted the purchase. Everything else it collected is deleted after 7 days (`functions/cleanup.ts`): carts that never became orders, orders that are not sent (such as a cart finished in the dashboard) and purchases TikTok refused. A cart older than 7 days at its order has lost its keys by then.
@@ -176,10 +188,8 @@ Use `swell app push --force` after a change that touches only `functions/lib/`: 
 | --- | --- |
 | Full description | `DESCRIPTION.md` |
 | Short description | `description` in `swell.json` (up to 70 characters) |
-| Icon | `assets/icon.png` (600 × 600, the square filled: the dashboard rounds the corners itself) |
+| Icon | `assets/icon.png` (600 × 600, TikTok's note on black, the square filled: the dashboard rounds the corners itself) |
 | Screenshots | `assets/images/*.png` (3200 × 1800), listed in `images` in `swell.json` |
-
-The listing uses the name TikTok only to say which service the app connects to, and no TikTok logo: TikTok allows its logos only with its prior written permission.
 
 ## License
 
